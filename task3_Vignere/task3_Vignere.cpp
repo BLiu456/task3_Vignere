@@ -1,7 +1,7 @@
 /*
     Name: Benjamin Liu
     Class: CS4600
-    Assignment: Hw2 Task 3 - Vignere Cipher
+    Assignment: Hw2 Exercise 3 - Vignere Cipher
     Description: An implementation of the Vignere Cipher. For simplicity the plaintext should contain only English letters and spaces.
     This program will only handle lower case letters, and upper case letters will be lower cased.
 */
@@ -48,13 +48,13 @@ int main()
    int j = 0;
    for (int i = 0; i < plain.length(); i++)
    {
-       if (isspace(plain[i]))
+       if (isspace(plain[i])) //If it is a space we ignore it
        {
            continue;
        }
 
-       int shift = ((tolower(plain[i]) - 'a') + (tolower(key[j])) - 'a') % 26;
-       cipher.push_back('a' + shift);
+       int shift = ((tolower(plain[i]) - 'a') + (tolower(key[j])) - 'a') % 26; //Calculate which letter to shift to pased on the plaintext and key characters
+       cipher.push_back('a' + shift); //Append the shifted character to the ciphertext
 
        j++;
        if (j >= key.length())
@@ -64,6 +64,8 @@ int main()
    }
 
    cout << "Ciphertext: " << cipher << endl;
+
+   return 0;
 }
 
 
