@@ -13,7 +13,7 @@ using namespace std;
 int main()
 {
     //Variable declarations here
-    string plain, key, cipher;
+    string plain, key, cipher, decrypt;
    
     //Getting the key and plaintext from user
     cout << "Enter a key: ";
@@ -50,6 +50,7 @@ int main()
    {
        if (isspace(plain[i])) //If it is a space we ignore it
        {
+           cipher.push_back(' ');
            continue;
        }
 
@@ -65,6 +66,32 @@ int main()
 
    cout << "Ciphertext: " << cipher << endl;
 
+   //Decryption part
+   j = 0;
+   for (int i = 0; i < cipher.length(); i++)
+   {
+       if (isspace(cipher[i]))
+       {
+           decrypt.push_back(' ');
+           continue;
+       }
+
+       int plainLetter = ((cipher[i] - 'a') - (tolower(key[j]) - 'a')) % 26;
+       if (plainLetter < 0)
+       {
+           plainLetter += 26;
+       }
+
+       decrypt.push_back('a' + plainLetter);
+
+       j++;
+       if (j >= key.length())
+       {
+           j = 0;
+       }
+   }
+
+   cout << "The decrypted message: " << decrypt << endl;
    return 0;
 }
 
